@@ -162,7 +162,7 @@ while program:
                 enemy.fire = False
             colision=colision_func(enemy.enemyx, enemy.enemyy, p.bulletX, p.bulletY)
             if colision:
-                enemy.enemyx = random.randint(0, 500)
+                enemy.enemyx = random.randint(0, 730)
                 score_value += 1
                 enemy.enemy_move += 1
                 enemy.enemy_bullet_move += 1
