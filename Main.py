@@ -134,6 +134,10 @@ while program:
                     p.player_move = 0
         p.playerx += p.player_move
         p.draw_player(p.playerx, p.playery)
+        if p.playerx <= 0:
+            p.player_move = 0
+        elif p.playerx >= 736:
+            p.player_move = 0
         if p.bullet_fire:
             p.bulletY += p.bullet_move
             p.draw_bullet(p.bulletX, p.bulletY)
@@ -143,14 +147,14 @@ while program:
 
         for enemy in enemy_list:
             Enemy.draw_enemy(enemy.enemyx, enemy.enemyy)
-            enemy.enemyx+=enemy.enemy_move
+            enemy.enemyx += enemy.enemy_move
             if enemy.enemyx >= 736:
                 enemy.enemy_move = -enemy.enemy_move
             elif enemy.enemyx <= 0:
                 enemy.enemy_move = -enemy.enemy_move
             if not enemy.fire:
                 enemy.enemy_bulletx = enemy.enemyx
-                enemy.enemy_bullet=enemy.enemy_bullety
+                enemy.enemy_bullet = enemy.enemy_bullety
                 enemy.enemy_bullet_fire(enemy.enemy_bulletx, enemy.enemy_bullety)
                 enemy.fire = True
             if enemy.fire:
