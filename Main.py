@@ -21,9 +21,9 @@ while program:
             self.enemyy = enemyy
             self.enemy_move = random.randint(2, 4)
             self.enemy_bullet_image = pygame.image.load("enemy bullet.png")
-            self.enemy_bulletx = 0
+            self.enemy_bulletx = self.enemyx
             self.enemy_bullety = 0
-            self.enemy_bullet_move = random.randint(2, 8)
+            self.enemy_bullet_move = random.randint(2, 4)
             self.fire = random.choice([True, False])
 
         @staticmethod
@@ -35,10 +35,10 @@ while program:
 
     enemy_image = pygame.image.load("enemy.png")
     enemy_list = []
-    n=0
-    number_of_enemies=3
+    n = 0
+    number_of_enemies = 3
     while n < number_of_enemies:
-        enemyx = random.randint(0, 100)
+        enemyx = random.randint(0, 736)
         enemyy = 10
         enemy_bulletx = 0
         enemy_bullety = 0
@@ -141,7 +141,7 @@ while program:
         if p.bullet_fire:
             p.bulletY += p.bullet_move
             p.draw_bullet(p.bulletX, p.bulletY)
-        if p.bulletY <= 0 :
+        if p.bulletY <= 0:
             p.bulletY = 500
             p.bullet_fire = False
 
@@ -154,11 +154,10 @@ while program:
                 enemy.enemy_move = -enemy.enemy_move
             if not enemy.fire:
                 enemy.enemy_bulletx = enemy.enemyx
-                enemy.enemy_bullet = enemy.enemy_bullety
+                enemy.enemy_bullety = enemy.enemy_bullety
                 enemy.enemy_bullet_fire(enemy.enemy_bulletx, enemy.enemy_bullety)
                 enemy.fire = True
             if enemy.fire:
-                enemy.enemy_bullet_move = random.randint(2, 8)
                 enemy.enemy_bullet_fire(enemy.enemy_bulletx, enemy.enemy_bullety)
                 enemy.enemy_bullety += enemy.enemy_bullet_move
             if enemy.enemy_bullety >= 800:
@@ -168,8 +167,12 @@ while program:
             if colision:
                 enemy.enemyx = random.randint(0, 730)
                 score_value += 1
-                enemy.enemy_move += 1
+                if enemy.enemy_move < 0:
+                    enemy.enemy_move -= 1
+                elif enemy.enemy_move > 0:
+                    enemy.enemy_move +=1
                 enemy.enemy_bullet_move += 1
+                print (enemy.enemy_bullet_move)
                 p.bulletY = 500
                 p.bullet_fire = False
             enemy_colision=enemy_colision_func(p.playerx, p.playery, enemy.enemy_bulletx, enemy.enemy_bullety)
