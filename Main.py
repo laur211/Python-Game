@@ -172,7 +172,6 @@ while program:
                 elif enemy.enemy_move > 0:
                     enemy.enemy_move +=1
                 enemy.enemy_bullet_move += 1
-                print (enemy.enemy_bullet_move)
                 p.bulletY = 500
                 p.bullet_fire = False
             enemy_colision=enemy_colision_func(p.playerx, p.playery, enemy.enemy_bulletx, enemy.enemy_bullety)
